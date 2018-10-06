@@ -23,7 +23,7 @@ private:
     std::string                 m_input;
     std::list<std::string>      m_operator;
     std::vector<std::string>    m_token;
-    std::vector<std::vector<std::string>> m_vect_token;
+    std::vector<std::vector<std::string> > m_vect_token;
     std::map<std::string, float> m_map_token;
 };
 

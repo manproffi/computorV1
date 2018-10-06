@@ -12,5 +12,6 @@ int main(int argc, char *argv[])
     } else {
         std::cout << "usage: ./computer \"polynomial equation\"" << std::endl;
     }
+    std::cout << std::endl;
     return 0;
 }
