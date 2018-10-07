@@ -15,3 +15,28 @@ The solution is:
 Reduced form: 5 * X^0 - 6 * X^1 + 0 * X^2 - 5.6 * X^3 = 0
 Polynomial degree: 3
 The polynomial degree is stricly greater than 2, I can't solve.
+
+
+D = 0 ->>> "36 * X^0 + 12 * X^1 - 1 * X^2 = 1 * X^0"
+
+
+"1 * X^2 = 0 * X^0"
+
+/////////////////////////
+
+"2 * X^0 + 5 * X^1 + 2 * X^2 = 0 * X^0"   ->>> D = 9; Answer = {1 , 1/2}
+"113 * X^0 + 25 * X^1 + 5 * X^2 = 0 * X^0"   ->>> D < 0;
+"1 * X^0 - 8 * X^1 + 16 * X^2 = 0 * X^0"   ->>> D = 0; Answer = {1/4 , 1/4}
+
+
+"10 * X^0 - 6 * X^1 + 1 * X^2 = 0 * X^0"   ->>> D < 0; Answer = {"3 - i", "3 + i"}
+
+
+
+
+Linear ********
+
+"-10 * X^0 - 0 * X^1 = 0 * X^0"  Equation isn't solvable: c / b = 10 / 0
+
+
+

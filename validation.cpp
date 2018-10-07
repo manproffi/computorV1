@@ -21,6 +21,11 @@ bool validation::checking()
     return true;
 }
 
+std::map<std::string, float> const & validation::getMap() const
+{
+    return m_map_token;
+}
+
 void validation::checkOperators()
 {
     bool operatorEqualPresent = false;
@@ -99,33 +104,25 @@ void validation::preparationReducedForm()
 
 void validation::moveAllTokenToLeftSide()
 {
-//    std::cout << "************\n";
-//    for (auto x:m_vect_token) {
-//        for (auto y:x) {
-//            std::cout << y << " ";
-//        }
-//        std::cout << std::endl;
-//    }
     bool flagEqual = false;
-//    std::map<std::string, float> tmpMap;
     float   num = 0;
     for (auto x:m_vect_token) {
-        auto y = x[2];
-        if (std::regex_match(y, std::regex("\\s+[+]\\s+"))) {
-//            std::cout << "+\n";
-            num = std::stof(x[0]) * (flagEqual ? -1 : 1);
-
-        } else if (std::regex_match(y, std::regex("\\s+[-]\\s+"))) {
-//            std::cout << "-\n";
-            num = std::stof(x[0]) * (flagEqual ? 1 : -1);
-        } else if (std::regex_match(y, std::regex("\\s+[=]\\s+"))) {
-//            std::cout << "=\n";
-            num = std::stof(x[0]) * (flagEqual ? 1 : -1);
-            flagEqual = true;
-        } else {
-            std::cout << "Ups:: error: " << y << std::endl;
+        try {
+            auto y = x[2];
+            if (std::regex_match(y, std::regex("\\s+[+]\\s+"))) {
+                num = std::stof(x[0]) * (flagEqual ? -1 : 1);
+            } else if (std::regex_match(y, std::regex("\\s+[-]\\s+"))) {
+                num = std::stof(x[0]) * (flagEqual ? 1 : -1);
+            } else if (std::regex_match(y, std::regex("\\s+[=]\\s+"))) {
+                num = std::stof(x[0]) * (flagEqual ? 1 : -1);
+                flagEqual = true;
+            } else {
+                std::cout << "Ups:: error: " << y << std::endl;
+            }
+            m_map_token[x[1]] = m_map_token[x[1]] + num;
+        } catch (std::exception &e) {
+            std::cout << "Error stof: " << e.what() << std::endl;
         }
-        m_map_token[x[1]] = m_map_token[x[1]] + num;
     }
 }
 
@@ -158,5 +155,7 @@ void validation::printReducedForm() const
     }
 }
 
-
-
+const char *validation::ErrorLexical::what() const _NOEXCEPT
+{
+    return "Lexical error: ";
+}

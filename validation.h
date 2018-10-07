@@ -5,12 +5,14 @@
 #include <list>
 #include <vector>
 #include <map>
+#include <exception>
 
 class validation
 {
 public:
     validation(char *);
     bool    checking();
+    std::map<std::string, float>const &  getMap() const;
 
 
 private:
@@ -25,6 +27,15 @@ private:
     std::vector<std::string>    m_token;
     std::vector<std::vector<std::string> > m_vect_token;
     std::map<std::string, float> m_map_token;
+
+
+    class ErrorLexical : public std::exception
+    {
+    public:
+        const char* what() const _NOEXCEPT override;
+    };
+
+
 };
 
 #endif // VALIDATION_H
