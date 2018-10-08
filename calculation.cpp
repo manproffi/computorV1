@@ -4,7 +4,7 @@
 
 calculation::calculation(std::map<std::string, float> input_map) : m_map(input_map)
 {
-//    std::cout << "constructor" << std::endl; //delete
+
 }
 
 void calculation::startCalculation() const
@@ -23,7 +23,6 @@ void calculation::checkPower() const
     bool powerPresent[3] = {false, false, false};
 
     for (auto x:m_map) {
-//        std::cout << x.first << " " << x.second << std::endl; //delete
         if (x.first.c_str()[2] == '0') {
             powerPresent[0] = true;
         } else if (x.first.c_str()[2] == '1') {
@@ -34,15 +33,11 @@ void calculation::checkPower() const
             std::cout << "Error: incorrect behavior" << std::endl;
         }
     }
-
-//    std::cout << powerPresent[0] << powerPresent[1] << powerPresent[2] << std::endl; //delete
-
     if (powerPresent[2] && powerPresent[1] && powerPresent[0]) {
         calcucalePolynomialEquations();
     } else if (!powerPresent[2] && powerPresent[1] && powerPresent[0]) {
         calcucaleLinearEquations();
     } else if (!powerPresent[2] && !powerPresent[1] && powerPresent[0]) {
-//        std::cout << "X^0" << std::endl;
         calcucateZeroDegree();
     } else {
         std::cout << "Error: incorrect input. The powers must be well ordered and all present" << std::endl;
@@ -92,7 +87,11 @@ void calculation::calcucaleLinearEquations() const
         std::cout << "Equation isn't solvable: c / b = " << -c << " / " << b << std::endl;
     } else {
         std::cout << "The solution is:" << std::endl;
-        std::cout << (-c / b) << std::endl;
+        if (isnan(res)) {
+            std::cout << "All the real numbers are solution" << std::endl;
+        } else {
+            std::cout << (-c / b) << std::endl;
+        }
     }
 }
 
@@ -108,4 +107,3 @@ void calculation::calcucateZeroDegree() const
         std::cout << res << std::endl;
     }
 }
-

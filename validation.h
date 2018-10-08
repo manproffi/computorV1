@@ -28,14 +28,6 @@ private:
     std::vector<std::vector<std::string> > m_vect_token;
     std::map<std::string, float> m_map_token;
 
-
-    class ErrorLexical : public std::exception
-    {
-    public:
-        const char* what() const _NOEXCEPT override;
-    };
-
-
 };
 
 #endif // VALIDATION_H

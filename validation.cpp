@@ -4,11 +4,11 @@
 #include <sstream>
 #include "validation.h"
 
-#define REGEX "([-]?\\d+(.\\d+)?)\\s+[*]\\s+X\\^\\d+"
+#define REGEX "([-]?\\d+([.]\\d+)?)\\s+[*]\\s+X\\^\\d"
 
 validation::validation(char *str): m_input(str)
 {
-    std::cout << "Constructor: " << m_input << std::endl;
+
 }
 
 bool validation::checking()
@@ -51,7 +51,6 @@ void validation::checkOperators()
         } else if (std::regex_match(m, std::regex("\\s+[=]\\s+"))) {
             operatorEqualPresent = true;
         }
-//        std::cout << m << std::endl; //delete
     }
     if (!operatorEqualPresent) {
         std::cout << "Error: missing equal operator" << std::endl;
@@ -72,7 +71,6 @@ void validation::takeToken()
 
     while(std::regex_search(tmp, m, e)) {
         m_token.push_back(*m.begin());
-//        std::cout << *m.begin() << std::endl; //delete
         tmp = m.suffix().str();
     }
 }
@@ -153,9 +151,4 @@ void validation::printReducedForm() const
         std::cout << "The polynomial degree is stricly greater than 2, I can't solve" << std::endl;
         exit(1);
     }
-}
-
-const char *validation::ErrorLexical::what() const _NOEXCEPT
-{
-    return "Lexical error: ";
 }
